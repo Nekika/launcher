@@ -1,30 +1,38 @@
 <script>
-	export let name;
+	import { onMount } from 'svelte'
+
+	import Navbar from './components/Navbar.svelte'
+	import Sidebar from './components/Sidebar.svelte'
+	import Detail from './components/Detail.svelte'
+	import Footer from './components/Footer.svelte'
+
+	let games = [];
+	let selected;
+
+	onMount(async () => {
+		const response = await fetch('/api/games.json');
+		games = await response.json();
+	})
+
+	const onGameClick = game => {
+		selected = game;
+	}	
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<Navbar />
+	<Sidebar items={games} onItemClick={onGameClick} />
+	<Detail {selected}/>
+	<Footer />
 </main>
 
 <style>
 	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
+		height: 100%;
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(12, 1fr);
+		grid-template-rows: repeat(12, 1fr);
+		background-color: #C1A5A9;
 	}
 </style>
