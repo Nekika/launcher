@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="32" width="32">
+    <path d="M 0 16 H 22`" stroke="#C1A5A9" stroke-width="3" />
+    <path d="M 16 10 L 22 16 L 16 22" stroke="#C1A5A9" stroke-width="3" fill="transparent" />
+</svg>
