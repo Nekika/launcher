@@ -1,13 +1,19 @@
 <script>
-	import { onMount } from 'svelte'
-
-	import Navbar from './components/Navbar.svelte'
-	import Sidebar from './components/Sidebar.svelte'
-	import Detail from './components/Detail.svelte'
-	import Footer from './components/Footer.svelte'
+	import { onMount } from 'svelte';
+	import { isInstalling } from './store';
+	import Navbar from './components/Navbar.svelte';
+	import Sidebar from './components/Sidebar.svelte';
+	import Detail from './components/Detail.svelte';
+	import Footer from './components/Footer.svelte';
 
 	let games = [];
 	let selected;
+
+	$: footerVisible = selected && $isInstalling;
+
+	isInstalling.subscribe(v => {
+		console.log(v)
+	})
 
 	onMount(async () => {
 		const response = await fetch('/api/games.json');
@@ -22,8 +28,10 @@
 <main>
 	<Navbar />
 	<Sidebar items={games} onItemClick={onGameClick} />
-	<Detail {selected}/>
-	<Footer />
+	<Detail game={selected}/>
+	{#if footerVisible}
+		<Footer game={selected} />
+	{/if}
 </main>
 
 <style>

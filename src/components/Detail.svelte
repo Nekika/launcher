@@ -1,24 +1,37 @@
 <script>
     import { isSidebarExpanded, isInstalling } from '../store';
 
-    export let selected;
+    export let game;
 
     $: gridColumnStart = $isSidebarExpanded ? 4 : 2;
     $: gridRowEnd = $isInstalling ? -2 : -1;
 
     const runInstall = () => {
-        isInstalling.set(true);
+        $isInstalling = true;
+    }
+
+    const runUninstall = () => {
+        game.installed = false;
     }
 
 </script>
 
 <div id="detail" style="grid-area: 2 / {gridColumnStart} / {gridRowEnd} / -1" >
-    {#if selected}
-        <h2>{selected.title}</h2>
-        <input id="install-button"
-           type="button" 
-           value="Install"
-           on:click="{runInstall}">
+    {#if game}
+        <h2>{game.title}</h2>
+        {#if game.installed}
+            <input id="uninstall-button"
+                   type="button" 
+                   value="Uninstall"
+                   on:click="{runUninstall}"
+            >
+        {:else}
+            <input id="install-button"
+                   type="button" 
+                   value="Install"
+                   on:click="{runInstall}"
+            >
+        {/if}
     {:else}
         <p class="hint">Select a game in the list beside</p>
     {/if}
@@ -35,13 +48,13 @@
         text-align: center;
     }
 
-    #install-button {
+    input[type=button] {
         position: absolute;
         bottom: 0;
         left: 0;
     }
 
-    #install-button:hover {
+    input[type=button]:hover {
         cursor: pointer;
     }
 </style>
