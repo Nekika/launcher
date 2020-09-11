@@ -1,12 +1,12 @@
 <script>
-    import { isSidebarExpanded, isDownloading } from '../store';
+    import { isSidebarExpanded, isInstalling } from '../store';
 
     export let items;
     export let onItemClick;
 
     $: toggleIconDirection = $isSidebarExpanded ? 'left' : 'right';
     $: gridColumnEnd = $isSidebarExpanded ? 4 : 2;
-    $: gridRowEnd = $isDownloading ? -2 : -1;
+    $: gridRowEnd = $isInstalling ? -2 : -1;
 
     const toggle = () => {
         isSidebarExpanded.update(value => !value);

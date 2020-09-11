@@ -1,7 +1,7 @@
 <script>
-    import { isDownloading } from '../store';
+    import { isInstalling } from '../store';
 
-    $: display = $isDownloading ? 'inherit' : 'none';
+    $: display = $isInstalling ? 'inherit' : 'none';
 
 </script>
 
