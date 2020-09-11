@@ -1,17 +1,21 @@
 [
-    {
-        "name": "rdr2",
-        "title": "Red Dead Redemption 2",
-        "size": 150000
-    },
+    
     {
         "name": "hzd",
         "title": "Horizon Zero Dawn",
-        "size": 100000
+        "size": 100000,
+        "installed": false
+    },
+    {
+        "name": "rdr2",
+        "title": "Red Dead Redemption 2",
+        "size": 150000,
+        "installed": true
     },
     {
         "name": "satisfactory",
         "title": "Satisfactory",
-        "size": 20000
+        "size": 20000,
+        "installed": false
     }
 ]
