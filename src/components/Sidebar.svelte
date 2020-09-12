@@ -18,7 +18,7 @@
         {#each items as item}
             <li on:click="{onItemClick(item)}">
                 <figure>
-                    <img src="/images/{item.name}.icon.svg" alt="{item.name} icon">
+                    <img src="{item.icon}" alt="{item.name} icon">
                     {#if $isSidebarExpanded}
                         <figcaption>{item.title}</figcaption>
                     {/if}

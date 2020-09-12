@@ -3,18 +3,21 @@
     {
         "name": "hzd",
         "title": "Horizon Zero Dawn",
+        "icon": "/images/hzd.icon.svg",
         "size": 100000,
         "installed": false
     },
     {
         "name": "rdr2",
         "title": "Red Dead Redemption 2",
+        "icon": "/images/rdr2.icon.svg",
         "size": 150000,
         "installed": true
     },
     {
         "name": "satisfactory",
         "title": "Satisfactory",
+        "icon": "/images/satisfactory.icon.svg",
         "size": 20000,
         "installed": false
     }
