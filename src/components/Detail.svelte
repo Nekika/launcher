@@ -13,27 +13,23 @@
     const runUninstall = () => {
         game.installed = false;
     }
-
 </script>
 
 <div id="detail" style="grid-area: 2 / {gridColumnStart} / {gridRowEnd} / -1" >
-    {#if game}
-        <h2>{game.title}</h2>
-        {#if game.installed}
-            <input id="uninstall-button"
-                   type="button" 
-                   value="Uninstall"
-                   on:click="{runUninstall}"
-            >
-        {:else}
-            <input id="install-button"
-                   type="button" 
-                   value="Install"
-                   on:click="{runInstall}"
-            >
-        {/if}
+    <h2 class="game-title">{game.title}</h2>
+    <div class="game-content">
+        {@html game.content}
+    </div>
+    {#if game.installed}
+        <input type="button"
+               value="Uninstall"
+               on:click="{runUninstall}"
+        >
     {:else}
-        <p class="hint">Select a game in the list beside</p>
+        <input type="button"
+               value="Install"
+               on:click="{runInstall}"
+        >
     {/if}
 </div>
 
@@ -42,19 +38,33 @@
         grid-row: 2 / -2;
         background-color: #C1A5A9;
         position: relative;
+        margin: 12px;
     }
 
-    h2, p {
+    h2 {
         text-align: center;
+    }
+
+    .game-content {
+        text-align: justify;
     }
 
     input[type=button] {
         position: absolute;
         bottom: 0;
-        left: 0;
+        right: 0;
+        margin-bottom: 0;
+        width: 120px;
+        height: 80px;
+        border-radius: 4px;
+        color: #D9D9D9;
+        border-color: #D9D9D9;
+        background-color: #1D1A31;
     }
 
     input[type=button]:hover {
         cursor: pointer;
     }
+
+
 </style>
