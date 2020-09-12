@@ -14,6 +14,12 @@
 	onMount(async () => {
 		const response = await fetch('/api/games.json');
 		games = await response.json();
+		await Promise.all(
+			games.map(async g => {
+				const response = await fetch(g.contentUrl);
+				return g.content = await response.text();
+			})
+		)
 	})
 
 	const onGameClick = game => {
@@ -24,7 +30,9 @@
 <main>
 	<Navbar />
 	<Sidebar items={games} onItemClick={onGameClick} />
-	<Detail game={selected} />
+	{#if selected}
+		<Detail game={selected} />
+	{/if}
 	{#if footerVisible}
 		<Footer game={selected} />
 	{/if}
