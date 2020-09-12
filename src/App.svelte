@@ -11,10 +11,6 @@
 
 	$: footerVisible = selected && $isInstalling;
 
-	isInstalling.subscribe(v => {
-		console.log(v)
-	})
-
 	onMount(async () => {
 		const response = await fetch('/api/games.json');
 		games = await response.json();
@@ -28,7 +24,7 @@
 <main>
 	<Navbar />
 	<Sidebar items={games} onItemClick={onGameClick} />
-	<Detail game={selected}/>
+	<Detail game={selected} />
 	{#if footerVisible}
 		<Footer game={selected} />
 	{/if}
